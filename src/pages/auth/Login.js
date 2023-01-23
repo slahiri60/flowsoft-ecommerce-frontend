@@ -1,53 +1,39 @@
 import { useState } from 'react';
-import Jumbotron from '../components/cards/Jumbotron';
+import Jumbotron from '../../components/cards/Jumbotron';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-export default function Register() {
+export default function Login() {
   // state
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(
-        `${process.env.REACT_APP_API}/register`,
-        {
-          name,
-          email,
-          password,
-        }
-      );
+      const { data } = await axios.post(`${process.env.REACT_APP_API}/login`, {
+        email,
+        password,
+      });
       console.log(data);
       if (data?.error) {
         //toast.error(data.error);
       } else {
-        toast.success('Registration successful');
+        toast.success('Login successful');
       }
     } catch (err) {
       console.log(err);
-      toast.error('Registration failed. Try again.');
+      toast.error('Login failed. Try again.');
     }
   };
 
   return (
     <div>
-      <Jumbotron title="Register" />
+      <Jumbotron title="Login" />
       <div className="container mt-5">
         <div className="row">
           <div className="col-md-6 offset-md-3">
             <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                className="form-control mb-4 p-2"
-                placeholder="Enter your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                autoFocus
-              />
-
               <input
                 type="email"
                 className="form-control mb-4 p-2"
