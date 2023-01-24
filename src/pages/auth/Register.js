@@ -2,12 +2,15 @@ import { useState } from 'react';
 import Jumbotron from '../../components/cards/Jumbotron';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { useAuth } from '../../context/auth';
 
 export default function Register() {
   // state
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  // hooks
+  const [auth, setAuth] = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,6 +27,7 @@ export default function Register() {
       if (data?.error) {
         //toast.error(data.error);
       } else {
+        setAuth({ ...auth, token: data.token, user: data.user });
         toast.success('Registration successful');
       }
     } catch (err) {
