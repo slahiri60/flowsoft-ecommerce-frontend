@@ -6,7 +6,7 @@ export default function Home() {
 
   return (
     <div>
-      <Jumbotron title="Hello World" />
+      <Jumbotron title="Hello Ecommerce Application!" />
       <pre>{JSON.stringify(auth, null, 4)}</pre>
     </div>
   );
