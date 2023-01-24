@@ -27,7 +27,7 @@ export default function Login() {
         localStorage.setItem('auth', JSON.stringify(data));
         setAuth({ ...auth, token: data.token, user: data.user });
         toast.success('Login successful');
-        navigate('/');
+        navigate('/dashboard');
       }
     } catch (err) {
       console.log(err);
