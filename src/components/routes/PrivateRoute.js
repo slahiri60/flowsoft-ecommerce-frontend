@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useAuth } from '../../context/auth';
+import Loading from './Loading';
 
 export default function PrivateRoute() {
   // context
@@ -16,5 +17,5 @@ export default function PrivateRoute() {
     }
   }, [auth?.token]);
 
-  return ok ? <Outlet /> : 'Loading...';
+  return ok ? <Outlet /> : <Loading />;
 }
