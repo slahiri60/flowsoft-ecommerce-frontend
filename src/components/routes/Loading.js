@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import LoadingGIF from '../../images/loading.gif';
 
 export default function Loading() {
   // state
@@ -18,8 +19,11 @@ export default function Loading() {
   }, [count]);
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100">
-      Redirecting you in {count} seconds
+    <div
+      className="d-flex justify-content-center align-items-center"
+      style={{ height: '90vh' }}
+    >
+      <img src={LoadingGIF} alt="Loading" style={{ width: '400px' }} />
     </div>
   );
 }
