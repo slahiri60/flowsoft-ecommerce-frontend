@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import Dashboard from './pages/user/Dashboard';
-import Secret from './pages/Secret';
+import AdminDashboard from './pages/admin/Dashboard';
 import PrivateRoute from './components/routes/PrivateRoute';
 
 const PageNotFound = () => {
@@ -26,8 +26,8 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<PrivateRoute />}>
-          <Route path="" element={<Dashboard />} />
-          <Route path="secret" element={<Secret />} />
+          <Route path="user" element={<Dashboard />} />
+          <Route path="admin" element={<AdminDashboard />} />
         </Route>
         <Route path="*" element={<PageNotFound />} replace />
       </Routes>

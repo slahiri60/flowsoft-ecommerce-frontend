@@ -8,7 +8,6 @@ export default function Loading() {
   // hooks
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
 
   useEffect(() => {
     const interval = setInterval(() => {
