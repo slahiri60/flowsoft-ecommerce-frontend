@@ -9,7 +9,7 @@ export default function AdminDashboard() {
     <>
       <Jumbotron
         title={`Hello ${auth?.user?.name}`}
-        subTitle="User Dashboard"
+        subTitle="Admin Dashboard"
       />
       <pre>{JSON.stringify(auth, null, 4)}</pre>
     </>
