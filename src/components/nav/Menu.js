@@ -22,6 +22,16 @@ export default function Menu() {
           </NavLink>
         </li>
 
+        <li className="nav-item">
+          <NavLink
+            className="nav-link"
+            aria-current="page"
+            to="/dashboard/secret"
+          >
+            SECRET
+          </NavLink>
+        </li>
+
         {!auth?.user ? (
           <>
             <li className="nav-item">
