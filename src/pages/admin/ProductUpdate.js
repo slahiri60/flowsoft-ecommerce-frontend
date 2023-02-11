@@ -83,6 +83,21 @@ export default function AdminProductUpdate() {
     }
   };
 
+  const handleDelete = async (req, res) => {
+    try {
+      let answer = window.confirm(
+        'Are you sure you want to delete this product?'
+      );
+      if (!answer) return;
+      const { data } = await axios.delete(`/product/${id}`);
+      toast.success(`"${data.name}" is deleted`);
+      navigate('/dashboard/admin/products');
+    } catch (err) {
+      console.log(err);
+      toast.error('Delete failed. Try again.');
+    }
+  };
+
   return (
     <>
       <Jumbotron
@@ -194,9 +209,14 @@ export default function AdminProductUpdate() {
               onChange={(e) => setQuantity(e.target.value)}
             />
 
-            <button onClick={handleSubmit} className="btn btn-primary mb-5">
-              Submit
-            </button>
+            <div className="d-flex justify-content-between">
+              <button onClick={handleSubmit} className="btn btn-primary mb-5">
+                Update
+              </button>
+              <button onClick={handleDelete} className="btn btn-danger mb-5">
+                Delete
+              </button>
+            </div>
           </div>
         </div>
       </div>
