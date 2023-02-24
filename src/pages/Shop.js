@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react';
 import Jumbotron from '../components/cards/Jumbotron';
 import axios from 'axios';
 import ProductCard from '../components/cards/ProductCard';
-import { Checkbox } from 'antd';
+import { Checkbox, Radio } from 'antd';
+import { prices } from '../prices';
 
 export default function Shop() {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [checked, setChecked] = useState([]); // categories
+  const [radio, setRadio] = useState([]); // radio
 
   useEffect(() => {
     loadProducts();
@@ -50,7 +52,7 @@ export default function Shop() {
     <>
       <Jumbotron title="Hello World" subTitle="Welcome to React E-commerce" />
 
-      <pre>{JSON.stringify({ checked }, null, 4)}</pre>
+      <pre>{JSON.stringify({ checked, radio }, null, 4)}</pre>
 
       <div className="container-fluid">
         <div className="row">
@@ -67,6 +69,19 @@ export default function Shop() {
                   {c.name}
                 </Checkbox>
               ))}
+            </div>
+
+            <h2 className="p-3 mt-2 mb-2 h4 bg-light text-center">
+              Filter by Price
+            </h2>
+            <div className="row p-5">
+              <Radio.Group onChange={(e) => setRadio(e.target.value)}>
+                {prices?.map((p) => (
+                  <div key={p._id} style={{ marginLeft: '8px' }}>
+                    <Radio value={p.array}>{p.name}</Radio>
+                  </div>
+                ))}
+              </Radio.Group>
             </div>
           </div>
 
