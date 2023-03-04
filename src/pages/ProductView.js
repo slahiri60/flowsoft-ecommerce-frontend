@@ -39,10 +39,14 @@ export default function ProductView() {
                 color="green"
               >
                 <img
-                  className="card-img-top"
+                  className="mx-auto d-block"
                   src={`${process.env.REACT_APP_API}/product/photo/${product._id}`}
                   alt={product.name}
-                  style={{ height: '500px', width: '100%', objectFit: 'cover' }}
+                  style={{
+                    height: '200px',
+                    width: '200px',
+                    objectFit: 'cover',
+                  }}
                 />
               </Badge.Ribbon>
             </Badge.Ribbon>

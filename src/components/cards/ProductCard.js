@@ -17,10 +17,10 @@ export default function ProductCard({ p }) {
           color="green"
         >
           <img
-            className="card-img-top"
+            className="mx-auto d-block"
             src={`${process.env.REACT_APP_API}/product/photo/${p._id}`}
             alt={p.name}
-            style={{ height: '300px', objectFit: 'cover' }}
+            style={{ height: '200px', width: '200px', objectFit: 'cover' }}
           />
         </Badge.Ribbon>
       </Badge.Ribbon>
@@ -56,7 +56,7 @@ export default function ProductCard({ p }) {
       </div>
 
       {/* <p>{moment(p.createdAt).fromNow()}</p>
-      <p>{p.sold} sold</p> */}
+        <p>{p.sold} sold</p> */}
     </div>
   );
 }
