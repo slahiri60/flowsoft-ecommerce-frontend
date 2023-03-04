@@ -51,7 +51,12 @@ export default function AdminProducts() {
                       <img
                         src={`${process.env.REACT_APP_API}/product/photo/${p._id}`}
                         alt={p.name}
-                        className="img img-fluid rounded-start"
+                        className="mx-auto d-block"
+                        style={{
+                          height: '175px',
+                          width: '175px',
+                          objectFit: 'cover',
+                        }}
                       />
                     </div>
 
