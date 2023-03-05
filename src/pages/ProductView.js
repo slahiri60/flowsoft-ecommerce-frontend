@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import Jumbotron from '../components/cards/Jumbotron';
+import moment from 'moment';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Badge } from 'antd';
+import { FaRegClock } from 'react-icons/fa';
 
 export default function ProductView() {
   // state
@@ -52,7 +53,7 @@ export default function ProductView() {
             </Badge.Ribbon>
 
             <div className="card-body">
-              <h5>{product?.name}</h5>
+              <h1 className="fw-bold">{product?.name}</h1>
 
               <h4 className="fw-bold">
                 {product?.price?.toLocaleString('en-US', {
@@ -61,12 +62,19 @@ export default function ProductView() {
                 })}
               </h4>
 
-              <p className="card-text">{product?.description}</p>
+              <p>
+                <FaRegClock /> Added: {moment(product.createdAt).fromNow()}
+              </p>
+
+              <p className="card-text lead">{product?.description}</p>
             </div>
 
             <button
               className="btn btn-outline-primary col card-button"
-              style={{ borderBottomRightRadius: '5px' }}
+              style={{
+                borderBottomRightRadius: '5px',
+                borderBottomLeftRadius: '5px',
+              }}
             >
               Add to Cart
             </button>
