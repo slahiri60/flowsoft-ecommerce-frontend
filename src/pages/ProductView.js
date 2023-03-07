@@ -4,10 +4,12 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Badge } from 'antd';
 import { FaRegClock } from 'react-icons/fa';
+import ProductCard from '../components/cards/ProductCard';
 
 export default function ProductView() {
   // state
   const [product, setProduct] = useState({});
+  const [related, setRelated] = useState([]);
   // hooks
   const params = useParams();
 
@@ -19,6 +21,18 @@ export default function ProductView() {
     try {
       const { data } = await axios.get(`/product/${params.slug}`);
       setProduct(data);
+      loadRelated(data._id, data.category._id);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const loadRelated = async (productId, categoryId) => {
+    try {
+      const { data } = await axios.get(
+        `/related-products/${productId}/${categoryId}`
+      );
+      setRelated(data);
     } catch (err) {
       console.log(err);
     }
@@ -83,6 +97,11 @@ export default function ProductView() {
 
         <div className="col-md-3">
           <h2>Related Products</h2>
+          <hr />
+          {related?.length < 1 && <p>Nothing found</p>}
+          {related?.map((p) => (
+            <ProductCard p={p} key={p._id} />
+          ))}
         </div>
       </div>
     </div>
