@@ -47,6 +47,12 @@ export default function Menu() {
               className="dropdown-menu"
               style={{ height: '300px', overflow: 'scroll' }}
             >
+              <li>
+                <NavLink className="nav-link" to="/categories">
+                  All Categories
+                </NavLink>
+              </li>
+
               {categories?.map((c) => (
                 <li>
                   <NavLink className="nav-link" to={`/category/${c.slug}`}>
