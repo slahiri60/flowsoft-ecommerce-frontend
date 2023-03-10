@@ -19,6 +19,17 @@ export default function Cart() {
     localStorage.setItem('cart', JSON.stringify(myCart));
   };
 
+  const cartTotal = () => {
+    let total = 0;
+    cart.map((item) => {
+      total += item.price;
+    });
+    return total.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    });
+  };
+
   return (
     <>
       <Jumbotron
@@ -62,7 +73,7 @@ export default function Cart() {
                   <div
                     key={p._id}
                     className="card mb-3"
-                    style={{ maxWidth: 540 }}
+                    // style={{ maxWidth: 540 }}
                   >
                     <div className="row g-0">
                       <div className="col-md-4">
@@ -80,7 +91,13 @@ export default function Cart() {
                       </div>
                       <div className="col-md-8">
                         <div className="card-body">
-                          <h5 className="card-title">{p.name}</h5>
+                          <h5 className="card-title">
+                            {p.name}{' '}
+                            {p?.price?.toLocaleString('en-US', {
+                              style: 'currency',
+                              currency: 'USD',
+                            })}
+                          </h5>
                           <p className="card-text">{`${p?.description?.substring(
                             0,
                             50
@@ -107,7 +124,12 @@ export default function Cart() {
               </div>
             </div>
 
-            <div className="col-md-4">Total / Address / Payments</div>
+            <div className="col-md-4">
+              <h4>Your cart summary</h4>
+              Total / Address / Payments
+              <hr />
+              <h6>Total: {cartTotal()}</h6>
+            </div>
           </div>
         </div>
       )}
