@@ -14,7 +14,7 @@ export default function Menu() {
   const categories = useCategory();
   const navigate = useNavigate();
 
-  console.log('categories in menu => ', categories);
+  // console.log("categories in menu => ", categories);
 
   const logout = () => {
     setAuth({ ...auth, user: null, token: '' });
@@ -57,7 +57,7 @@ export default function Menu() {
               </li>
 
               {categories?.map((c) => (
-                <li>
+                <li key={c._id}>
                   <NavLink className="nav-link" to={`/category/${c.slug}`}>
                     {c.name}
                   </NavLink>
