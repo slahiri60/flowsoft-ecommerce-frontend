@@ -14,6 +14,8 @@ export default function Login() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // console.log("location => ", location);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -23,7 +25,7 @@ export default function Login() {
       });
       console.log(data);
       if (data?.error) {
-        //toast.error(data.error);
+        toast.error(data.error);
       } else {
         localStorage.setItem('auth', JSON.stringify(data));
         setAuth({ ...auth, token: data.token, user: data.user });
@@ -42,6 +44,7 @@ export default function Login() {
   return (
     <div>
       <Jumbotron title="Login" />
+
       <div className="container mt-5">
         <div className="row">
           <div className="col-md-6 offset-md-3">
